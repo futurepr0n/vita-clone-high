@@ -131,6 +131,7 @@ int main()
 //		vita2d_draw_rectangle(680, 350, 100, 150, RGBA8(0, 0, 255, 255));
 //		vita2d_draw_fill_circle(200, 420, 100, RGBA8(0, 255,0 ,255));
 		vita2d_draw_texture(bg_i, bg_x, bg_y);
+		vita2d_draw_texture(bg_ii, bg_x + 512, bg_y);
 
 //		vita2d_draw_texture_rotate(image, 940/2, 544/2, rad);
 //		vita2d_draw_texture(peter, peter_x, peter_y);
@@ -157,6 +158,7 @@ int main()
 	vita2d_free_texture(image);
 	vita2d_free_texture(peter);
 	vita2d_free_texture(bg_i);
+	vita2d_free_texture(bg_ii);
 	vita2d_free_texture(abe);
 	vita2d_free_pgf(pgf);
 	vita2d_free_pvf(pvf);

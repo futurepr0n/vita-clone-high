@@ -1,10 +1,10 @@
 TITLE_ID = VITA2DTST
 TARGET   = futurepr0n2d
-OBJS     = main.o image.o peter.o abe.o lockers.o
+OBJS     = main.o image.o peter.o abe.o lockers.o smb_fireball.o audio/vita_audio.o
 
 LIBS = -lvita2d -lSceDisplay_stub -lSceGxm_stub \
 	-lSceSysmodule_stub -lSceCtrl_stub -lScePgf_stub -lScePvf_stub \
-	-lSceCommonDialog_stub -lfreetype -lpng -ljpeg -lz -lm -lc
+	-lSceCommonDialog_stub -lSceAudio_stub -lfreetype -lpng -ljpeg -lz -lm -lc
 
 PREFIX  = arm-vita-eabi
 CC      = $(PREFIX)-gcc

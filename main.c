@@ -11,6 +11,8 @@
 
 #include <vita2d.h>
 
+#include "audio/vita_audio.h"
+
 /*
  * Symbol of the image.png file
  */
@@ -18,6 +20,9 @@ extern unsigned char _binary_image_png_start;
 extern unsigned char _binary_peter_png_start;
 extern unsigned char _binary_lockers_png_start;
 extern unsigned char _binary_abe_png_start;
+
+// attempt audio file
+extern unsigned char _binary_smb_fireball_wav_start;
 
 void blitBackground(vita2d_texture *bg, float x, float y);
 void blitBackgroundBW(vita2d_texture *bg, float x, float y);
@@ -35,8 +40,8 @@ int main()
 	vita2d_texture *abe;
 
 	float rad = 0.0f;
-    	float peter_x = 20.0f;
-    	float peter_y = 20.0f;
+    float peter_x = 20.0f;
+    float peter_y = 20.0f;
 
 	float p1_pos_x = 64.0f;
 	float p1_pos_y = 128.0f;
@@ -52,6 +57,10 @@ int main()
 	pvf = vita2d_load_default_pvf();
 
 	sceCtrlSetSamplingMode(SCE_CTRL_MODE_ANALOG);
+
+	// Initialize Audio
+	vitaAudioInit(0x40);
+	vitaWavInit();
 	/*
 	 * Load the statically compiled image.png file.
 	 */
@@ -62,6 +71,8 @@ int main()
 	bg_iii = vita2d_load_PNG_buffer(&_binary_lockers_png_start);
 	abe = vita2d_load_PNG_buffer(&_binary_abe_png_start);
 
+	fireball_sound = vitaWavLoad(&_binary_smb_fireball_wav_start);
+
 	memset(&pad, 0, sizeof(pad));
 
 	while (1) {
@@ -69,6 +80,9 @@ int main()
 
 		if (pad.buttons & SCE_CTRL_START)
 			break;
+		
+		if(pad.buttons & SCE_CTRL_SQUARE)
+			vitaWavPlay(fireball_sound);
 		
 		if (pad.buttons & SCE_CTRL_RIGHT && p1_pos_x <= 800){
 		//	peter_x += 10.0f;

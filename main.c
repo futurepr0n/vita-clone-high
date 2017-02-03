@@ -29,12 +29,13 @@ int main()
 	vita2d_texture *image;
 	vita2d_texture *peter;
 	vita2d_texture *bg_i;
-	vita2d_texture *abe;
 	vita2d_texture *bg_ii;
+	vita2d_texture *bg_iii;
+	vita2d_texture *abe;
 
 	float rad = 0.0f;
-    float peter_x = 20.0f;
-    float peter_y = 20.0f;
+    	float peter_x = 20.0f;
+    	float peter_y = 20.0f;
 
 	float p1_pos_x = 64.0f;
 	float p1_pos_y = 128.0f;
@@ -56,7 +57,8 @@ int main()
 	image = vita2d_load_PNG_buffer(&_binary_image_png_start);
 	peter = vita2d_load_PNG_buffer(&_binary_peter_png_start);
 	bg_i = vita2d_load_PNG_buffer(&_binary_lockers_png_start);
-	bg_ii = vita2d_load_PNG_buffer(&_binary_lockers_png_start);	
+	bg_ii = vita2d_load_PNG_buffer(&_binary_lockers_png_start);
+	bg_iii = vita2d_load_PNG_buffer(&_binary_lockers_png_start);
 	abe = vita2d_load_PNG_buffer(&_binary_abe_png_start);
 
 	memset(&pad, 0, sizeof(pad));
@@ -79,7 +81,7 @@ int main()
 		if (pad.buttons & SCE_CTRL_LEFT && p1_pos_x >= 60){
 		//	peter_x -= 10.0f;
 			if(p1_pos_x >= 60){
-			p1_pos_x -= 10.0f;
+				p1_pos_x -= 10.0f;
 			}else{
 				bg_x += 10.0f;
 			}
@@ -90,7 +92,7 @@ int main()
 			p1_pos_y -= 10.0f;
 		}
 		
-		if (pad.buttons & SCE_CTRL_DOWN && p1_pos_y <= 500){
+		if (pad.buttons & SCE_CTRL_DOWN && p1_pos_y <= 400){
 			p1_pos_y += 10.0f;
 
 		}
@@ -98,12 +100,20 @@ int main()
 
 		if (pad.lx >= 130 && p1_pos_x <= 800) {
 		//	peter_x += 10.0f;
-			p1_pos_x += 10.0f;
+			if(p1_pos_x <= 150){
+				p1_pos_x += 10.0f;
+			} else {
+				bg_x -= 10.0f;
+			}
 		}
 
 		if (pad.lx <= 120 && p1_pos_x >= 20 ){
 		//	peter_x -= 10.0f;
-			p1_pos_x -= 10.f;
+			if(p1_pos_x >= 60){
+				p1_pos_x -= 10.0f;
+			}else{
+				bg_x += 10.0f;
+			}
 		}
 		if (pad.ly >= 140 && p1_pos_y <= 400){
 			p1_pos_y += 10.0f;
@@ -132,6 +142,7 @@ int main()
 //		vita2d_draw_fill_circle(200, 420, 100, RGBA8(0, 255,0 ,255));
 		vita2d_draw_texture(bg_i, bg_x, bg_y);
 		vita2d_draw_texture(bg_ii, bg_x + 512, bg_y);
+		vita2d_draw_texture(bg_iii, bg_x + 1024, bg_y);
 
 //		vita2d_draw_texture_rotate(image, 940/2, 544/2, rad);
 //		vita2d_draw_texture(peter, peter_x, peter_y);
@@ -171,5 +182,6 @@ int main()
 void blitBackground(vita2d_texture *bg, float x, float y){
 	float newX = x+512;
 	vita2d_draw_texture(bg, newX, y);
+	vita2d_draw_texture(bg, newX + 512, y);
 	
 } 

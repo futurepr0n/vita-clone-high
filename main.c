@@ -19,7 +19,7 @@ extern unsigned char _binary_peter_png_start;
 extern unsigned char _binary_lockers_png_start;
 extern unsigned char _binary_abe_png_start;
 
-void blitBackground(vita2d_texture *bg, float x, float y);
+//void blitBackground(vita2d_texture *bg, float x, float y);
 
 int main()
 {
@@ -115,7 +115,7 @@ int main()
 
 		vita2d_draw_texture(bg_i, bg_x, bg_y);
 		if(bg_x < 0){
-     	      		blitBackground(bg_i, bg_x, bg_y);
+     	      		vita2d_draw_texture(bg_i, bg_x, bg_y);
      	   		if(bg_x<-512){
      	   			bg_x=0;
      	   		}
@@ -161,14 +161,9 @@ int main()
 	return 0;
 }
 
+/*
 void blitBackground(vita2d_texture *bg, float x, float y){
 	float newX = x+512;
 	vita2d_draw_texture(bg, newX, y);
-	/*if(x < 0){
-		blitAlphaImageToScreen(0, 0, 512, 256, bg, x+512,y);
-		if(x < -512){
-			blitAlphaImageToScreen(0, 0, 512, 256, bg, x+1024, y);
-		}
-	}*/
 	
-}
+} */

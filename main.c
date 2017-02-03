@@ -22,7 +22,7 @@ extern unsigned char _binary_lockers_png_start;
 extern unsigned char _binary_abe_png_start;
 
 // attempt audio file
-extern unsigned char _binary_smb_fireball_wav_start;
+extern const char _binary_smb_fireball_wav_start; // = "smb_fireball.wav";
 
 void blitBackground(vita2d_texture *bg, float x, float y);
 void blitBackgroundBW(vita2d_texture *bg, float x, float y);
@@ -38,6 +38,7 @@ int main()
 	vita2d_texture *bg_ii;
 	vita2d_texture *bg_iii;
 	vita2d_texture *abe;
+	vitaWav *fireball_sound;
 
 	float rad = 0.0f;
     float peter_x = 20.0f;

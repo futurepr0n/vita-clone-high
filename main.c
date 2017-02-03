@@ -131,7 +131,7 @@ int main()
 //		vita2d_draw_texture_rotate(image, 940/2, 544/2, rad);
 //		vita2d_draw_texture(peter, peter_x, peter_y);
 		vita2d_draw_texture(abe, p1_pos_x, p1_pos_y);
-		vita2d_draw_texture(bg_i, bg_x, bg_y);
+		//vita2d_draw_texture(bg_i, bg_x, bg_y);
 
 //		vita2d_draw_line(500, 30, 800, 300, RGBA8(255, 0, 255, 255));
 

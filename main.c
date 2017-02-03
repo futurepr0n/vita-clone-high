@@ -87,7 +87,7 @@ int main()
 			break;
 		
 		if(pad.buttons & SCE_CTRL_SQUARE)
-			vitaWavPlay(&fireball_sound);
+			vitaWavPlay(fireball_sound);
 		
 		if (pad.buttons & SCE_CTRL_RIGHT && p1_pos_x <= 800){
 		//	peter_x += 10.0f;
@@ -199,6 +199,7 @@ int main()
 	vita2d_free_texture(abe);
 	vita2d_free_pgf(pgf);
 	vita2d_free_pvf(pvf);
+	vitaWavUnload(fireball_sound);
 
 	sceKernelExitProcess(0);
 	return 0;

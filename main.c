@@ -20,6 +20,7 @@ extern unsigned char _binary_lockers_png_start;
 extern unsigned char _binary_abe_png_start;
 
 void blitBackground(vita2d_texture *bg, float x, float y);
+void blitBackgroundBW(vita2d_texture *bg, float x, float y);
 
 int main()
 {
@@ -78,7 +79,7 @@ int main()
 			}
 		}
 
-		if (pad.buttons & SCE_CTRL_LEFT && p1_pos_x >= 60){
+		if (pad.buttons & SCE_CTRL_LEFT && p1_pos_x >= 20){
 		//	peter_x -= 10.0f;
 			if(p1_pos_x >= 60){
 				p1_pos_x -= 10.0f;
@@ -135,6 +136,12 @@ int main()
      	   			bg_x=0;
      	   		}
      	 	}
+		if(bg_x > 0){
+			blitBackgroundBW(bg_ii, bg_x, bg_y);
+			if(bg_x>+512){
+				bg_x=0;
+			}
+		}
 
 
 		// vita2d_draw_rectangle(p1_pos_x, p1_pos_y, 75, 150, RGBA8(255, 0, 0, 255));
@@ -185,3 +192,10 @@ void blitBackground(vita2d_texture *bg, float x, float y){
 	vita2d_draw_texture(bg, newX + 512, y);
 	
 } 
+
+void blitBackgroundBW(vita2d_texture *bg, float x, float y){
+	float newX = x-512;
+	vita2d_draw_texture(bg, newX, y);
+	vita2d_draw_texture(bg, newX - 512, y);
+	
+}

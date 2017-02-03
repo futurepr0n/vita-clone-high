@@ -15,7 +15,7 @@ all: $(TARGET).vpk
 
 %.vpk: eboot.bin
 	vita-mksfoex -s TITLE_ID=$(TITLE_ID) "$(TARGET)" param.sfo
-	vita-pack-vpk -s param.sfo -b eboot.bin $@
+	vita-pack-vpk -s param.sfo -b eboot.bin -b smb_fireball.wav $@
 
 eboot.bin: $(TARGET).velf
 	vita-make-fself -s $< $@

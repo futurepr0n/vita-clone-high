@@ -21,8 +21,12 @@ extern unsigned char _binary_peter_png_start;
 extern unsigned char _binary_lockers_png_start;
 extern unsigned char _binary_abe_png_start;
 
+
+
 // attempt audio file
-extern const char _binary_smb_fireball_wav_start; // = "smb_fireball.wav";
+
+//char path[MAX_PATH_LENGTH];
+//extern const char binary_smb_fireball_wav = sprintf(path, MAX_PATH_LENGTH, "smb_fireball.wav");
 
 void blitBackground(vita2d_texture *bg, float x, float y);
 void blitBackgroundBW(vita2d_texture *bg, float x, float y);
@@ -38,7 +42,7 @@ int main()
 	vita2d_texture *bg_ii;
 	vita2d_texture *bg_iii;
 	vita2d_texture *abe;
-	vitaWav *fireball_sound;
+	vitaWav *fireball_sound = vitaWavLoad("smb_fireball");
 
 	float rad = 0.0f;
     float peter_x = 20.0f;
@@ -72,7 +76,7 @@ int main()
 	bg_iii = vita2d_load_PNG_buffer(&_binary_lockers_png_start);
 	abe = vita2d_load_PNG_buffer(&_binary_abe_png_start);
 
-	fireball_sound = vitaWavLoad(&_binary_smb_fireball_wav_start);
+//	fireball_sound = vitaWavLoad(binary_smb_fireball_wav);
 
 	memset(&pad, 0, sizeof(pad));
 

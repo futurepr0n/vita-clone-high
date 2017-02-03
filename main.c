@@ -115,8 +115,7 @@ int main()
 	
 		}
 
-		vita2d_draw_texture(bg_i, bg_x, bg_y);/*
-		if(bg_x < 0){
+/*		if(bg_x < 0){
     	      		blitBackground(bg_ii, bg_x, bg_y);
  	   		if(bg_x<-512){
      	   			bg_x=0;
@@ -129,6 +128,7 @@ int main()
 		// vita2d_draw_rectangle(p1_pos_x, p1_pos_y, 75, 150, RGBA8(255, 0, 0, 255));
 //		vita2d_draw_rectangle(680, 350, 100, 150, RGBA8(0, 0, 255, 255));
 //		vita2d_draw_fill_circle(200, 420, 100, RGBA8(0, 255,0 ,255));
+		vita2d_draw_texture(bg_i, bg_x, bg_y);
 
 //		vita2d_draw_texture_rotate(image, 940/2, 544/2, rad);
 //		vita2d_draw_texture(peter, peter_x, peter_y);

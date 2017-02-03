@@ -67,7 +67,7 @@ int main()
 		if (pad.buttons & SCE_CTRL_START)
 			break;
 		
-		if (pad.buttons & SCE_CTRL_RIGHT && p1_pos_x <= 150){
+		if (pad.buttons & SCE_CTRL_RIGHT && p1_pos_x <= 800){
 		//	peter_x += 10.0f;
 			if(p1_pos_x <= 150){
 				p1_pos_x += 10.0f;
@@ -96,7 +96,7 @@ int main()
 		}
 
 
-		if (pad.lx >= 130 && p1_pos_x <= 200) {
+		if (pad.lx >= 130 && p1_pos_x <= 800) {
 		//	peter_x += 10.0f;
 			p1_pos_x += 10.0f;
 		}
@@ -140,9 +140,9 @@ int main()
 
 //		vita2d_draw_line(500, 30, 800, 300, RGBA8(255, 0, 255, 255));
 
-		vita2d_pgf_draw_text(pgf, 700, 30, RGBA8(0,255,0,255), 1.0f, "Clone High");
+		vita2d_pgf_draw_text(pgf, 700, 430, RGBA8(0,255,0,255), 1.0f, "Clone High");
 
-		vita2d_pvf_draw_text(pvf, 700, 80, RGBA8(0,255,0,255), 1.0f, "by futurepr0n!");
+		vita2d_pvf_draw_text(pvf, 700, 480, RGBA8(0,255,0,255), 1.0f, "by futurepr0n!");
 
 		vita2d_end_drawing();
 		vita2d_swap_buffers();

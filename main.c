@@ -42,7 +42,7 @@ int main()
 	vita2d_texture *bg_ii;
 	vita2d_texture *bg_iii;
 	vita2d_texture *abe;
-	vitaWav *fireball_sound = vitaWavLoad("smb_fireball");
+	vitaWav *fireball_sound = vitaWavLoad("ux0:/data/audio/smb_fireball.wav");
 
 	float rad = 0.0f;
     float peter_x = 20.0f;

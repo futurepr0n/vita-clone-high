@@ -87,7 +87,7 @@ int main()
 			break;
 		
 		if(pad.buttons & SCE_CTRL_SQUARE)
-			vitaWavPlay(fireball_sound);
+			vitaWavPlay(&fireball_sound);
 		
 		if (pad.buttons & SCE_CTRL_RIGHT && p1_pos_x <= 800){
 		//	peter_x += 10.0f;

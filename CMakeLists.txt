@@ -50,14 +50,14 @@ FUNCTION(ADD_RESOURCES out_var)
   SET(${out_var} "${result}" PARENT_SCOPE)
 ENDFUNCTION()
 
-file(GLOB res_files RELATIVE ${CMAKE_SOURCE_DIR} resources/*.png resources/*.wav)
+file(GLOB res_files RELATIVE ${CMAKE_SOURCE_DIR} ../resources/*.png ../resources/*.wav)
 add_resources(vita_clone_high_res ${res_files})
 
 
 
 add_executable(${SHORT_NAME}
   ${vita_clone_high_res}
-  main.c
+  ../src/main.c
   ../audio/vita_audio.c
 )
 
@@ -88,7 +88,7 @@ target_link_libraries(${SHORT_NAME}
 
 # Create Vita artifacts
 vita_create_self(${SHORT_NAME}.self ${SHORT_NAME} eboot.bin)
-vita_create_vpk(${SHORT_NAME}.vpk ${VITA_TITLEID} eboot.bin abe.png image.png lockers.png peter.png smb_fireball.wav
+vita_create_vpk(${SHORT_NAME}.vpk ${VITA_TITLEID} eboot.bin 
   VERSION ${VITA_VERSION}
   NAME ${VITA_APP_NAME}
 

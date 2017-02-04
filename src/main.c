@@ -11,7 +11,7 @@
 
 #include <vita2d.h>
 
-#include "audio/vita_audio.h"
+#include "../audio/vita_audio.h"
 
 /*
  * Symbol of the image.png file

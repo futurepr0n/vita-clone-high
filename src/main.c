@@ -69,12 +69,12 @@ int main()
 	/*
 	 * Load the statically compiled image.png file.
 	 */
-	image = vita2d_load_PNG_buffer(&_binary_image_png_start);
-	peter = vita2d_load_PNG_buffer(&_binary_peter_png_start);
-	bg_i = vita2d_load_PNG_buffer(&_binary_lockers_png_start);
-	bg_ii = vita2d_load_PNG_buffer(&_binary_lockers_png_start);
-	bg_iii = vita2d_load_PNG_buffer(&_binary_lockers_png_start);
-	abe = vita2d_load_PNG_buffer(&_binary_abe_png_start);
+	image = vita2d_load_PNG_buffer(&_binary_resources_image_png_start);
+	peter = vita2d_load_PNG_buffer(&_binary_resources_peter_png_start);
+	bg_i = vita2d_load_PNG_buffer(&_binary_resources_lockers_png_start);
+	bg_ii = vita2d_load_PNG_buffer(&_binary_resources_lockers_png_start);
+	bg_iii = vita2d_load_PNG_buffer(&_binary_resources_lockers_png_start);
+	abe = vita2d_load_PNG_buffer(&_binary_resources_abe_png_start);
 
 //	fireball_sound = vitaWavLoad(binary_smb_fireball_wav);
 

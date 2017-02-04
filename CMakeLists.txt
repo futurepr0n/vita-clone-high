@@ -23,20 +23,42 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 include_directories(
  audio/
+ src/
+ resources/
 )
 
 link_directories(
   ${CMAKE_CURRENT_BINARY_DIR}
 )
 
+# Builds
+FUNCTION(ADD_RESOURCES out_var)
+  SET(result)
+  FOREACH(in_f ${ARGN})
+    SET(out_f "${CMAKE_CURRENT_BINARY_DIR}/${in_f}.o")
+    GET_FILENAME_COMPONENT(out_dir ${out_f} DIRECTORY)
+    ADD_CUSTOM_COMMAND(OUTPUT ${out_f}
+      COMMAND ${CMAKE_COMMAND} -E make_directory ${out_dir}
+      COMMAND ${CMAKE_LINKER} -r -b binary -o ${out_f} ${in_f}
+      DEPENDS ${in_f}
+      WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+      COMMENT "Building resource ${out_f}"
+      VERBATIM
+      )
+    LIST(APPEND result ${out_f})
+  ENDFOREACH()
+  SET(${out_var} "${result}" PARENT_SCOPE)
+ENDFUNCTION()
+
+file(GLOB res_files RELATIVE ${CMAKE_SOURCE_DIR} resources/*.png resources/*.wav)
+add_resources(vita_clone_high_res ${res_files})
+
+
+
 add_executable(${SHORT_NAME}
+  ${vita_clone_high_res}
   main.c
-  audio/vita_audio.c
-  smb_fireball.wav
-  abe.png
-  image.png
-  lockers.png
-  peter.png
+  ../audio/vita_audio.c
 )
 
 target_link_libraries(${SHORT_NAME}

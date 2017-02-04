@@ -1,6 +1,6 @@
 TITLE_ID = VITA2DTST
 TARGET   = futurepr0n2d
-OBJS     = main.o image.o peter.o abe.o lockers.o audio/vita_audio.o
+OBJS     = main.o image.o peter.o abe.o lockers.o audio/vita_audio.o 
 
 LIBS = -lvita2d -lSceDisplay_stub -lSceGxm_stub \
 	-lSceSysmodule_stub -lSceCtrl_stub -lScePgf_stub -lScePvf_stub \

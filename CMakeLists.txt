@@ -1,22 +1,3 @@
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Gist
- @futurepr0n
-You don’t have any verified emails. We recommend verifying at least one email.
-Email verification helps our support team verify ownership if you lose account access and allows you to receive all the notifications you ask for.
- Watch 58
-  Star 239
-  Fork 75 TheOfficialFloW/VitaShell
- Code  Issues 18  Pull requests 0  Projects 0  Wiki  Pulse  Graphs
-Branch: master Find file Copy pathVitaShell/CMakeLists.txt
-c805b08  3 days ago
-@BenMitnicK BenMitnicK Update CMakeLists.txt
-4 contributors @TheOfficialFloW @yifanlu @Mayoshiroi @BenMitnicK
-RawBlameHistory     
-171 lines (158 sloc)  3.7 KB
 cmake_minimum_required(VERSION 2.8)
 
 # VitaSDK defines
@@ -29,10 +10,10 @@ if( NOT DEFINED CMAKE_TOOLCHAIN_FILE )
 endif()
 
 # Project start
-project(VitaShell)
+project(vita-clone-high)
 include("${VITASDK}/share/vita.cmake" REQUIRED)
-set(VITA_APP_NAME "VitaShell")
-set(VITA_TITLEID  "VITASHELL")
+set(VITA_APP_NAME "CloneHigh")
+set(VITA_TITLEID  "CLONEHIGH")
 set(VITA_VERSION  "01.51")
 
 # Flags and includes
@@ -67,10 +48,10 @@ FUNCTION(ADD_RESOURCES out_var)
   SET(${out_var} "${result}" PARENT_SCOPE)
 ENDFUNCTION()
 
-file(GLOB res_files RELATIVE ${CMAKE_SOURCE_DIR} resources/*.png resources/*.txt resources/*.bin resources/*.skprx)
+file(GLOB res_files RELATIVE ${CMAKE_SOURCE_DIR} *.png *.bin *.sprx)
 add_resources(vitashell_res ${res_files})
 
-add_executable(VitaShell
+add_executable(CloneHigh
   ${vitashell_res}
   main.c
   audio/vita_audio.c
@@ -119,8 +100,8 @@ target_link_libraries(
 )
 
 # Create Vita artifacts
-vita_create_self(eboot.bin VitaShell UNSAFE)
-vita_create_vpk(VitaShell.vpk ${VITA_TITLEID} eboot.bin
+vita_create_self(eboot.bin CloneHigh UNSAFE)
+vita_create_vpk(CloneHigh.vpk ${VITA_TITLEID} eboot.bin
   VERSION ${VITA_VERSION}
   NAME ${VITA_APP_NAME}
   FILE smb_fireball.wav
@@ -135,5 +116,3 @@ add_custom_target(copy
   COMMAND cp eboot.bin F:/app/${VITA_TITLEID}/eboot.bin
   DEPENDS eboot.bin
 )
-Contact GitHub API Training Shop Blog About
-© 2017 GitHub, Inc. Terms Privacy Security Status Help

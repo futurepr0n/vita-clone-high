@@ -11,15 +11,15 @@
 
 #include <vita2d.h>
 
-#include "../audio/vita_audio.h"
+#include "/audio/vita_audio.h"
 
 /*
  * Symbol of the image.png file
  */
-extern unsigned char _binary_image_png_start;
-extern unsigned char _binary_peter_png_start;
-extern unsigned char _binary_lockers_png_start;
-extern unsigned char _binary_abe_png_start;
+extern unsigned char _binary_resources_image_png_start;
+extern unsigned char _binary_resources_peter_png_start;
+extern unsigned char _binary_resources_lockers_png_start;
+extern unsigned char _binary_resources_abe_png_start;
 
 
 

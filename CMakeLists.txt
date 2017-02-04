@@ -10,8 +10,7 @@ if( NOT DEFINED CMAKE_TOOLCHAIN_FILE )
 endif()
 
 # Project start
-set(SHORT_NAME vita_clone_high)
-project(${SHORT_NAME})
+project(vita_clone_high)
 include("${VITASDK}/share/vita.cmake" REQUIRED)
 set(VITA_APP_NAME "vita-clone-high")
 set(VITA_TITLEID  "CLONEHIGH")
@@ -22,9 +21,7 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=gnu11")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 include_directories(
- audio/
- src/
- resources/
+
 )
 
 link_directories(
@@ -50,18 +47,18 @@ FUNCTION(ADD_RESOURCES out_var)
   SET(${out_var} "${result}" PARENT_SCOPE)
 ENDFUNCTION()
 
-file(GLOB res_files RELATIVE ${CMAKE_SOURCE_DIR} ../resources/*.png ../resources/*.wav)
+file(GLOB res_files RELATIVE ${CMAKE_SOURCE_DIR} resources/*.png resources/*.wav)
 add_resources(vita_clone_high_res ${res_files})
 
 
 
-add_executable(${SHORT_NAME}
+add_executable(vita_clone_high
   ${vita_clone_high_res}
-  ../src/main.c
-  ../audio/vita_audio.c
+  src/main.c
+  src/audio/vita_audio.c
 )
 
-target_link_libraries(${SHORT_NAME}
+target_link_libraries(vita_clone_high
   vita2d
   png
   jpeg
@@ -87,7 +84,7 @@ target_link_libraries(${SHORT_NAME}
 )
 
 # Create Vita artifacts
-vita_create_self(${SHORT_NAME}.self ${SHORT_NAME} eboot.bin)
+vita_create_self(${SHORT_NAME}.self ${SHORT_NAME} UNSAFE)
 vita_create_vpk(${SHORT_NAME}.vpk ${VITA_TITLEID} eboot.bin 
   VERSION ${VITA_VERSION}
   NAME ${VITA_APP_NAME}

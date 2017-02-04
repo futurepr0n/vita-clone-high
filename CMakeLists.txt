@@ -84,8 +84,8 @@ target_link_libraries(vita_clone_high
 )
 
 # Create Vita artifacts
-vita_create_self(${SHORT_NAME}.self ${SHORT_NAME} UNSAFE)
-vita_create_vpk(${SHORT_NAME}.vpk ${VITA_TITLEID} eboot.bin 
+vita_create_self(eboot.bin vita_clone_high UNSAFE)
+vita_create_vpk(vita_clone_high.vpk ${VITA_TITLEID} eboot.bin 
   VERSION ${VITA_VERSION}
   NAME ${VITA_APP_NAME}
 

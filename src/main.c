@@ -11,7 +11,7 @@
 
 #include <vita2d.h>
 
-#include "/audio/vita_audio.h"
+#include "audio/vita_audio.h"
 
 /*
  * Symbol of the image.png file
@@ -42,7 +42,7 @@ int main()
 	vita2d_texture *bg_ii;
 	vita2d_texture *bg_iii;
 	vita2d_texture *abe;
-	vitaWav *fireball_sound = vitaWavLoad("app0:/resources/smb_fireball.wav");
+	vitaWav *fireball_sound;
 		
 	float rad = 0.0f;
     float peter_x = 20.0f;
@@ -64,7 +64,6 @@ int main()
 	sceCtrlSetSamplingMode(SCE_CTRL_MODE_ANALOG);
 
 	// Initialize Audio
-	vitaAudioInit(0x40);
 	vitaWavInit();
 	/*
 	 * Load the statically compiled image.png file.
@@ -76,7 +75,7 @@ int main()
 	bg_iii = vita2d_load_PNG_buffer(&_binary_resources_lockers_png_start);
 	abe = vita2d_load_PNG_buffer(&_binary_resources_abe_png_start);
 
-//	fireball_sound = vitaWavLoad(binary_smb_fireball_wav);
+    fireball_sound = vitaWavLoad("app0:resources/smb_fireball.wav");
 
 	memset(&pad, 0, sizeof(pad));
 
@@ -181,7 +180,7 @@ int main()
 		vita2d_pgf_draw_text(pgf, 500, 430, RGBA8(0,255,0,255), 1.0f, "vitaWav fireball");
 
 		vita2d_pvf_draw_text(pvf, 700, 480, RGBA8(0,255,0,255), 1.0f, "by futurepr0n!");
-		vita2d_pvf_draw_text(pvf, 500, 480, RGBA8(0,255,0,255), 1.0f, fireball_sound);
+		/* vita2d_pvf_draw_text(pvf, 500, 480, RGBA8(0,255,0,255), 1.0f, fireball_sound); */
 
 		vita2d_end_drawing();
 		vita2d_swap_buffers();

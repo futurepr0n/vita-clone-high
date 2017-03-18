@@ -20,6 +20,7 @@ extern unsigned char _binary_resources_image_png_start;
 extern unsigned char _binary_resources_peter_png_start;
 extern unsigned char _binary_resources_lockers_png_start;
 extern unsigned char _binary_resources_abe_png_start;
+extern unsigned char _binary_resources_fireball_png_start;
 
 
 
@@ -30,6 +31,8 @@ extern unsigned char _binary_resources_abe_png_start;
 
 void blitBackground(vita2d_texture *bg, float x, float y);
 void blitBackgroundBW(vita2d_texture *bg, float x, float y);
+void blitFireball(vita2d_texture *img, float x, float y);
+
 
 int main()
 {
@@ -42,17 +45,21 @@ int main()
 	vita2d_texture *bg_ii;
 	vita2d_texture *bg_iii;
 	vita2d_texture *abe;
+	vita2d_texture *fireball;
 	vitaWav *fireball_sound;
-		
+
 	float rad = 0.0f;
-    float peter_x = 20.0f;
-    float peter_y = 20.0f;
+    	float peter_x = 20.0f;
+    	float peter_y = 20.0f;
 
 	float p1_pos_x = 64.0f;
 	float p1_pos_y = 128.0f;
 
 	float bg_x = 0.0f;
 	float bg_y = 0.0f;
+
+	float fireball_x = 0.0f;
+	float fireball_y = 0.0f;
 
 
 	vita2d_init();
@@ -74,6 +81,7 @@ int main()
 	bg_ii = vita2d_load_PNG_buffer(&_binary_resources_lockers_png_start);
 	bg_iii = vita2d_load_PNG_buffer(&_binary_resources_lockers_png_start);
 	abe = vita2d_load_PNG_buffer(&_binary_resources_abe_png_start);
+	fireball = vita2d_load_PNG_buffer(&_binary_resources_fireball_png_start);
 
     fireball_sound = vitaWavLoad("app0:resources/smb_fireball.wav");
 
@@ -81,13 +89,19 @@ int main()
 
 	while (1) {
 		sceCtrlPeekBufferPositive(0, &pad, 1);
+		vita2d_start_drawing();
+		vita2d_clear_screen();
 
 		if (pad.buttons & SCE_CTRL_START)
 			break;
-		
-		if(pad.buttons & SCE_CTRL_SQUARE)
+
+		if(pad.buttons & SCE_CTRL_SQUARE){
+			fireball_x = p1_pos_x + 10;
+			fireball_y = p1_pos_y;
 			vitaWavPlay(fireball_sound);
-		
+			blitFireball(fireball, fireball_x, fireball_y);
+		}
+
 		if (pad.buttons & SCE_CTRL_RIGHT && p1_pos_x <= 800){
 		//	peter_x += 10.0f;
 			if(p1_pos_x <= 150){
@@ -104,13 +118,13 @@ int main()
 			}else{
 				bg_x += 10.0f;
 			}
-		
+
 		}
 
 		if (pad.buttons & SCE_CTRL_UP && p1_pos_y >= 20){
 			p1_pos_y -= 10.0f;
 		}
-		
+
 		if (pad.buttons & SCE_CTRL_DOWN && p1_pos_y <= 400){
 			p1_pos_y += 10.0f;
 
@@ -138,15 +152,13 @@ int main()
 			p1_pos_y += 10.0f;
 
 		}
-		
+
 		if (pad.ly <= 120 && p1_pos_y >= 20){
 			p1_pos_y -= 10.0f;
-	
+
 		}
 
 
-		vita2d_start_drawing();
-		vita2d_clear_screen();
 
 		if(bg_x < 0){
     	      		blitBackground(bg_ii, bg_x, bg_y);
@@ -219,4 +231,11 @@ void blitBackgroundBW(vita2d_texture *bg, float x, float y){
 	vita2d_draw_texture(bg, newX, y);
 	vita2d_draw_texture(bg, newX - 512, y);
 	
+}
+
+void blitFireball(vita2d_texture *img, float x, float y){
+	for(int i = x; i < 810; i++){
+	
+		vita2d_draw_texture(img,i,y);
+	}
 }

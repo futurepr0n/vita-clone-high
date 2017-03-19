@@ -131,7 +131,7 @@ int main()
 		vita2d_draw_texture(bg_ii, bg_x + 512, bg_y);
 		vita2d_draw_texture(bg_iii, bg_x + 1024, bg_y);
 
-		control(pad, fireball_sound, a_player);
+		control(pad, fireball_sound);
 
 		//vita2d_draw_texture(abe, a_player.x, a_player.y);
 		blitObj(a_player);
@@ -192,7 +192,7 @@ void loadCharacterData(){
 	//loadChain();
 }
 
-void control(SceCtrlData p1, vitaWav *sound, obj a_player){
+void control(SceCtrlData p1, vitaWav *sound){
 
 	if (p1.buttons & SCE_CTRL_START){
 		//break;

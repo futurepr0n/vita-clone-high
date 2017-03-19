@@ -140,11 +140,11 @@ int main()
 		vita2d_draw_texture(bg_ii, bg_x + 512, bg_y);
 		vita2d_draw_texture(bg_iii, bg_x + 1024, bg_y);
 
-		control(pad);
+		control(pad, fireball_sound);
 
 		//vita2d_draw_texture(abe, p1_pos_x, p1_pos_y);
 		blitObj(a_player);
-		printScore();
+		printScore(pgf, pvf);
 
 		vita2d_end_drawing();
 		vita2d_swap_buffers();
@@ -161,7 +161,7 @@ int main()
 	vita2d_free_texture(peter);
 	vita2d_free_texture(bg_i);
 	vita2d_free_texture(bg_ii);
-	vita2d_free_texture(a_player);
+	//vita2d_free_texture(a_player);
 	vita2d_free_pgf(pgf);
 	vita2d_free_pvf(pvf);
 	vitaWavUnload(fireball_sound);
@@ -201,16 +201,16 @@ void loadCharacterData(){
 	//loadChain();
 }
 
-void control(SceCtrlData p1){
+void control(SceCtrlData p1, vitaWav *sound){
 
 	if (p1.buttons & SCE_CTRL_START){
-		break;
+		//break;
 	}
 
 	if(p1.buttons & SCE_CTRL_SQUARE){
 		// fireball_x = p1_pos_x + 10;
 		// fireball_y = p1_pos_y;
-		vitaWavPlay(fireball_sound);
+		vitaWavPlay(sound);
 		// blitFireball(fireball, fireball_x, fireball_y);
 	}
 

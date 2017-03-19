@@ -59,7 +59,7 @@ void blitBackground(vita2d_texture *bg, float x, float y);
 void blitBackgroundBW(vita2d_texture *bg, float x, float y);
 void blitFireball(vita2d_texture *img, float x, float y);
 void blitObj(obj object);
-void control(SceCtrlData p1);
+void control(SceCtrlData p1, vitaWav *sound);
 void printScore(vita2d_pgf *pgf, vita2d_pvf *pvf);
 void loadPlayer();
 

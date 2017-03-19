@@ -61,6 +61,7 @@ void control(SceCtrlData p1, vitaWav *sound);
 void printScore(vita2d_pgf *pgf, vita2d_pvf *pvf);
 void loadPlayer();
 void loadCharacterData();
+void loadFireball();
 void shootFireball();
 
 //a_player.x = 20.0f;

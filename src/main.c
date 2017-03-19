@@ -60,9 +60,14 @@ void blitBackgroundBW(vita2d_texture *bg, float x, float y);
 void blitFireball(vita2d_texture *img, float x, float y);
 void blitObj(obj object);
 void control(SceCtrlData p1);
-void printScore();
+void printScore(vita2d_pgf *pgf, vita2d_pvf *pvf);
 void loadPlayer();
 
+float p1_pos_x = 20.0f;
+float p1_pos_y = 20.0f;
+
+float bg_x = 0.0f;
+float bg_y = 0.0f;
 
 int main()
 {
@@ -82,11 +87,7 @@ int main()
   float peter_x = 20.0f;
   float peter_y = 20.0f;
 
-	float p1_pos_x = 20.0f;
-	float p1_pos_y = 20.0f;
 
-	float bg_x = 0.0f;
-	float bg_y = 0.0f;
 
 	float fireball_x = 0.0f;
 	float fireball_y = 0.0f;
@@ -285,7 +286,7 @@ void loadPlayer(){
 	//return player;
 }
 
-void printScore(){
+void printScore(vita2d_pgf *pgf, vita2d_pvf *pvf){
 	vita2d_pgf_draw_text(pgf, 700, 430, RGBA8(0,255,0,255), 1.0f, "Clone High");
 	vita2d_pgf_draw_text(pgf, 500, 430, RGBA8(0,255,0,255), 1.0f, "vitaWav fireball");
 	vita2d_pvf_draw_text(pvf, 700, 480, RGBA8(0,255,0,255), 1.0f, "by futurepr0n!");

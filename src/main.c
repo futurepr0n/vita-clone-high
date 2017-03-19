@@ -58,8 +58,11 @@ obj a_background2;
 void blitBackground(vita2d_texture *bg, float x, float y);
 void blitBackgroundBW(vita2d_texture *bg, float x, float y);
 void blitFireball(vita2d_texture *img, float x, float y);
+void blitObj(obj object);
 void control(SceCtrlData p1);
 void printScore();
+void loadPlayer();
+
 
 int main()
 {
@@ -133,10 +136,10 @@ int main()
 		vita2d_draw_texture(bg_ii, bg_x + 512, bg_y);
 		vita2d_draw_texture(bg_iii, bg_x + 1024, bg_y);
 
-		void control(pad);
+		control(pad);
 
 		//vita2d_draw_texture(abe, p1_pos_x, p1_pos_y);
-		blitObj(player);
+		blitObj(a_player);
 		printScore();
 
 		vita2d_end_drawing();
@@ -190,8 +193,8 @@ void blitFireball(vita2d_texture *img, float x, float y){
 
 void loadCharacterData(){
 	loadPlayer();
-	loadEnemies();
-	loadChain();
+	//loadEnemies();
+	//loadChain();
 }
 
 void control(SceCtrlData p1){
@@ -264,15 +267,15 @@ void control(SceCtrlData p1){
 }
 
 void loadPlayer(){
-	player.x = 64.0f;
-	player.y = 128.0f;
+	a_player.x = 64.0f;
+	a_player.y = 128.0f;
 	//player.imgX = 46;
 	//player.imgY = 24;
-	player.img = vita2d_load_PNG_buffer(&_binary_resources_abe_png_start);
-	if(!player.img){
+	a_player.img = vita2d_load_PNG_buffer(&_binary_resources_abe_png_start);
+	if(!a_player.img){
 		printf("Player image failed to load...");
 	}
-	player.isalive = 1;
+	a_player.isalive = 1;
 	//blitObj(player);
 	//return player;
 }

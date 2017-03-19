@@ -23,8 +23,6 @@
 // These are some variables for our use
 int done = 0;
 int bullets = 0;
-char highScore[5];
-char playerScore[5];
 int points = 0;
 int hScore = 1000;
 
@@ -62,6 +60,7 @@ void blitObj(obj object);
 void control(SceCtrlData p1, vitaWav *sound);
 void printScore(vita2d_pgf *pgf, vita2d_pvf *pvf);
 void loadPlayer();
+void loadCharacterData();
 
 float p1_pos_x = 20.0f;
 float p1_pos_y = 20.0f;
@@ -84,14 +83,6 @@ int main()
 	vitaWav *fireball_sound;
 
 	float rad = 0.0f;
-  float peter_x = 20.0f;
-  float peter_y = 20.0f;
-
-
-
-	float fireball_x = 0.0f;
-	float fireball_y = 0.0f;
-
 
 	vita2d_init();
 	vita2d_set_clear_color(RGBA8(0x40, 0x40, 0x40, 0xFF));
@@ -100,7 +91,6 @@ int main()
 	pvf = vita2d_load_default_pvf();
 
 	sceCtrlSetSamplingMode(SCE_CTRL_MODE_ANALOG);
-
 	// Initialize Audio
 	vitaWavInit();
 	/*
@@ -117,6 +107,7 @@ int main()
 
 	memset(&pad, 0, sizeof(pad));
 
+  loadCharacterData();
 	while (1) {
 		sceCtrlPeekBufferPositive(0, &pad, 1);
 		vita2d_start_drawing();

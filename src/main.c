@@ -62,8 +62,8 @@ void printScore(vita2d_pgf *pgf, vita2d_pvf *pvf);
 void loadPlayer();
 void loadCharacterData();
 
-float p1_pos_x = 20.0f;
-float p1_pos_y = 20.0f;
+float a_player.x = 20.0f;
+float a_player.y = 20.0f;
 
 float bg_x = 0.0f;
 float bg_y = 0.0f;
@@ -131,9 +131,9 @@ int main()
 		vita2d_draw_texture(bg_ii, bg_x + 512, bg_y);
 		vita2d_draw_texture(bg_iii, bg_x + 1024, bg_y);
 
-		control(pad, fireball_sound);
+		control(pad, fireball_sound, a_player);
 
-		//vita2d_draw_texture(abe, p1_pos_x, p1_pos_y);
+		//vita2d_draw_texture(abe, a_player.x, a_player.y);
 		blitObj(a_player);
 		printScore(pgf, pvf);
 
@@ -192,72 +192,72 @@ void loadCharacterData(){
 	//loadChain();
 }
 
-void control(SceCtrlData p1, vitaWav *sound){
+void control(SceCtrlData p1, vitaWav *sound, obj a_player){
 
 	if (p1.buttons & SCE_CTRL_START){
 		//break;
 	}
 
 	if(p1.buttons & SCE_CTRL_SQUARE){
-		// fireball_x = p1_pos_x + 10;
-		// fireball_y = p1_pos_y;
+		// fireball_x = a_player.x + 10;
+		// fireball_y = a_player.y;
 		vitaWavPlay(sound);
 		// blitFireball(fireball, fireball_x, fireball_y);
 	}
 
-	if (p1.buttons & SCE_CTRL_RIGHT && p1_pos_x <= 800){
+	if (p1.buttons & SCE_CTRL_RIGHT && a_player.x <= 800){
 	//	peter_x += 10.0f;
-		if(p1_pos_x <= 150){
-			p1_pos_x += 10.0f;
+		if(a_player.x <= 150){
+			a_player.x += 10.0f;
 		} else {
 			bg_x -= 10.0f;
 		}
 	}
 
-	if (p1.buttons & SCE_CTRL_LEFT && p1_pos_x >= 20){
+	if (p1.buttons & SCE_CTRL_LEFT && a_player.x >= 20){
 	//	peter_x -= 10.0f;
-		if(p1_pos_x >= 60){
-			p1_pos_x -= 10.0f;
+		if(a_player.x >= 60){
+			a_player.x -= 10.0f;
 		}else{
 			bg_x += 10.0f;
 		}
 
 	}
 
-	if (p1.buttons & SCE_CTRL_UP && p1_pos_y >= 20){
-		p1_pos_y -= 10.0f;
+	if (p1.buttons & SCE_CTRL_UP && a_player.y >= 20){
+		a_player.y -= 10.0f;
 	}
 
-	if (p1.buttons & SCE_CTRL_DOWN && p1_pos_y <= 400){
-		p1_pos_y += 10.0f;
+	if (p1.buttons & SCE_CTRL_DOWN && a_player.y <= 400){
+		a_player.y += 10.0f;
 
 	}
 
 
-	if (p1.lx >= 130 && p1_pos_x <= 800) {
+	if (p1.lx >= 130 && a_player.x <= 800) {
 	//	peter_x += 10.0f;
-		if(p1_pos_x <= 150){
-			p1_pos_x += 10.0f;
+		if(a_player.x <= 150){
+			a_player.x += 10.0f;
 		} else {
 			bg_x -= 10.0f;
 		}
 	}
 
-	if (p1.lx <= 120 && p1_pos_x >= 20 ){
+	if (p1.lx <= 120 && a_player.x >= 20 ){
 	//	peter_x -= 10.0f;
-		if(p1_pos_x >= 60){
-			p1_pos_x -= 10.0f;
+		if(a_player.x >= 60){
+			a_player.x -= 10.0f;
 		}else{
 			bg_x += 10.0f;
 		}
 	}
-	if (p1.ly >= 140 && p1_pos_y <= 400){
-		p1_pos_y += 10.0f;
+	if (p1.ly >= 140 && a_player.y <= 400){
+		a_player.y += 10.0f;
 
 	}
 
-	if (p1.ly <= 120 && p1_pos_y >= 20){
-		p1_pos_y -= 10.0f;
+	if (p1.ly <= 120 && a_player.y >= 20){
+		a_player.y -= 10.0f;
 
 	}
 

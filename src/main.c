@@ -102,10 +102,9 @@ int main()
 	bg_ii = vita2d_load_PNG_buffer(&_binary_resources_lockers_png_start);
 	bg_iii = vita2d_load_PNG_buffer(&_binary_resources_lockers_png_start);
 	//abe = vita2d_load_PNG_buffer(&_binary_resources_abe_png_start);
-	fireball = vita2d_load_PNG_buffer(&_binary_resources_fireball_png_start);
 	fireball_sound = vitaWavLoad("app0:resources/smb_fireball.wav");
 
-	a_fireball.img = fireball;
+	a_fireball.img = vita2d_load_PNG_buffer(&_binary_resources_fireball_png_start);
 	memset(&pad, 0, sizeof(pad));
   int p = 0;
 

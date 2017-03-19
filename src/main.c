@@ -82,6 +82,9 @@ int main()
   float peter_x = 20.0f;
   float peter_y = 20.0f;
 
+	float p1_pos_x = 20.0f;
+	float p1_pos_y = 20.0f;
+
 	float bg_x = 0.0f;
 	float bg_y = 0.0f;
 
@@ -157,7 +160,7 @@ int main()
 	vita2d_free_texture(peter);
 	vita2d_free_texture(bg_i);
 	vita2d_free_texture(bg_ii);
-	vita2d_free_texture(abe);
+	vita2d_free_texture(a_player);
 	vita2d_free_pgf(pgf);
 	vita2d_free_pvf(pvf);
 	vitaWavUnload(fireball_sound);
@@ -198,13 +201,15 @@ void loadCharacterData(){
 }
 
 void control(SceCtrlData p1){
-	if (p1.buttons & SCE_CTRL_START)
+
+	if (p1.buttons & SCE_CTRL_START){
 		break;
+	}
 
 	if(p1.buttons & SCE_CTRL_SQUARE){
 		// fireball_x = p1_pos_x + 10;
 		// fireball_y = p1_pos_y;
-		// vitaWavPlay(fireball_sound);
+		vitaWavPlay(fireball_sound);
 		// blitFireball(fireball, fireball_x, fireball_y);
 	}
 

@@ -47,7 +47,7 @@ typedef struct{
 	int pctr;
 }obj;
 
-obj a_fireball;
+obj a_fireball[MAX_NUM_BULLETS];
 obj a_player;
 obj a_background1;
 obj a_background2;
@@ -106,6 +106,7 @@ int main()
 	fireball_sound = vitaWavLoad("app0:resources/smb_fireball.wav");
 
 	memset(&pad, 0, sizeof(pad));
+  int p = 0;
 
   loadCharacterData();
 	while (1) {
@@ -132,6 +133,23 @@ int main()
 		vita2d_draw_texture(bg_iii, bg_x + 1024, bg_y);
 
 		control(pad, fireball_sound);
+
+		for(p = 0; p < MAX_NUM_BULLETS; p++){
+			//a_fireball[p].isalive = checkCollision(a_fireball[p]);
+			if(a_fireball[p].isalive == 1){
+       			a_fireball[p].x = a_fireball[p].x + 10  * 1.5F;
+				blitObj(a_fireball[p]);
+			}else{
+				a_fireball[p].isalive = 0;
+				a_fireball[p].pctr = 0;
+			}
+			if(a_fireball[p].x > 485){
+					a_fireball[p].isalive = 0;
+					a_fireball[p].pctr = 0;
+			}
+		}
+
+
 
 		//vita2d_draw_texture(abe, a_player.x, a_player.y);
 		blitObj(a_player);
@@ -189,7 +207,7 @@ void blitFireball(vita2d_texture *img, float x, float y){
 void loadCharacterData(){
 	loadPlayer();
 	//loadEnemies();
-	//loadChain();
+	//loada_fireball();
 }
 
 void control(SceCtrlData p1, vitaWav *sound){

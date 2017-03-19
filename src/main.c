@@ -61,6 +61,7 @@ void control(SceCtrlData p1, vitaWav *sound);
 void printScore(vita2d_pgf *pgf, vita2d_pvf *pvf);
 void loadPlayer();
 void loadCharacterData();
+void shootFireball();
 
 //a_player.x = 20.0f;
 //a_player.y = 20.0f;
@@ -79,7 +80,7 @@ int main()
 	vita2d_texture *bg_ii;
 	vita2d_texture *bg_iii;
 	//vita2d_texture *abe;
-	vita2d_texture *fireball;
+	//vita2d_texture *fireball;
 	vitaWav *fireball_sound;
 
 	float rad = 0.0f;
@@ -104,7 +105,7 @@ int main()
 	//abe = vita2d_load_PNG_buffer(&_binary_resources_abe_png_start);
 	fireball_sound = vitaWavLoad("app0:resources/smb_fireball.wav");
 
-	a_fireball.img = vita2d_load_PNG_buffer(&_binary_resources_fireball_png_start);
+
 	memset(&pad, 0, sizeof(pad));
   int p = 0;
 
@@ -207,7 +208,7 @@ void blitFireball(vita2d_texture *img, float x, float y){
 void loadCharacterData(){
 	loadPlayer();
 	//loadEnemies();
-	//loada_fireball();
+	loadFireball();
 }
 
 void control(SceCtrlData p1, vitaWav *sound){
@@ -220,6 +221,7 @@ void control(SceCtrlData p1, vitaWav *sound){
 		// fireball_x = a_player.x + 10;
 		// fireball_y = a_player.y;
 		vitaWavPlay(sound);
+		shootFireball();
 		// blitFireball(fireball, fireball_x, fireball_y);
 	}
 
@@ -293,6 +295,34 @@ void loadPlayer(){
 	a_player.isalive = 1;
 	//blitObj(player);
 	//return player;
+}
+
+void loadFireball(){
+	int i;
+	vita2d_texture *temp = vita2d_load_PNG_buffer(&_binary_resources_fireball_png_start);
+	for(i = 0; i < MAX_NUM_BULLETS; i++){
+		a_fireball[i].x = 0;
+		a_fireball[i].y = 0;
+		a_fireball[i].img = temp;
+		if(!a_fireball[i].img){
+			printf("a_fireball image failed to load...");
+		}
+		a_fireball[i].isalive = 0;
+		a_fireball[i].pctr = 0;
+	}
+}
+
+void shootFireball(){
+	if(bullets < MAX_NUM_BULLETS && a_fireball[bullets].isalive == 0){
+		a_fireball[bullets].isalive = 1;
+		a_fireball[bullets].x = a_player.x + 42;
+		a_fireball[bullets].y = a_player.y + (a_player.y / 2);
+	}
+
+	bullets++;
+	if(bullets > MAX_NUM_BULLETS){
+		bullets = 0;
+	}
 }
 
 void printScore(vita2d_pgf *pgf, vita2d_pvf *pvf){

@@ -62,8 +62,8 @@ void printScore(vita2d_pgf *pgf, vita2d_pvf *pvf);
 void loadPlayer();
 void loadCharacterData();
 
-a_player.x = 20.0f;
-a_player.y = 20.0f;
+//a_player.x = 20.0f;
+//a_player.y = 20.0f;
 
 float bg_x = 0.0f;
 float bg_y = 0.0f;

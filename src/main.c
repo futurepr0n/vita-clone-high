@@ -55,7 +55,6 @@ obj a_background2;
 //Functions
 void blitBackground(vita2d_texture *bg, float x, float y);
 void blitBackgroundBW(vita2d_texture *bg, float x, float y);
-void blitFireball(vita2d_texture *img, float x, float y);
 void blitObj(obj object);
 void control(SceCtrlData p1, vitaWav *sound);
 void printScore(vita2d_pgf *pgf, vita2d_pvf *pvf);
@@ -145,7 +144,7 @@ int main()
 				a_fireball[p].isalive = 0;
 				a_fireball[p].pctr = 0;
 			}
-			if(a_fireball[p].x > 485){
+			if(a_fireball[p].x > 1000){
 					a_fireball[p].isalive = 0;
 					a_fireball[p].pctr = 0;
 			}
@@ -199,12 +198,7 @@ void blitBackgroundBW(vita2d_texture *bg, float x, float y){
 
 }
 
-void blitFireball(vita2d_texture *img, float x, float y){
-	for(int i = x; i < 810; i++){
 
-		vita2d_draw_texture(img,i,y);
-	}
-}
 
 void loadCharacterData(){
 	loadPlayer();
@@ -223,7 +217,6 @@ void control(SceCtrlData p1, vitaWav *sound){
 		// fireball_y = a_player.y;
 		vitaWavPlay(sound);
 		shootFireball();
-		// blitFireball(fireball, fireball_x, fireball_y);
 	}
 
 	if (p1.buttons & SCE_CTRL_RIGHT && a_player.x <= 800){

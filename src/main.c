@@ -298,9 +298,8 @@ void loadPlayer(){
 }
 
 void loadEnemies(){
-
 	int i;
-	vita2d_texture peter = vita2d_load_PNG_buffer(&_binary_resources_peter_png_start);
+	vita2d_texture *peter = vita2d_load_PNG_buffer(&_binary_resources_peter_png_start);
 	for(i = 0; i < MAX_NUM_ENEMIES; i++){
 		enemy[i].x = 480 + ((int)rand()%10000);
 		enemy[i].y = 1 + ((int)rand()%272 - 34);

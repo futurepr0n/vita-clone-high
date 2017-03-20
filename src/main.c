@@ -48,6 +48,7 @@ typedef struct{
 }obj;
 
 obj a_fireball[MAX_NUM_BULLETS];
+obj enemy[MAX_NUM_ENEMIES];
 obj a_player;
 obj a_background1;
 obj a_background2;
@@ -173,7 +174,7 @@ int main()
 	 */
 	vita2d_fini();
 	vita2d_free_texture(image);
-	vita2d_free_texture(peter);
+	//vita2d_free_texture(peter);
 	vita2d_free_texture(bg_i);
 	vita2d_free_texture(bg_ii);
 	//vita2d_free_texture(a_player);

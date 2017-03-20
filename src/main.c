@@ -301,8 +301,8 @@ void loadEnemies(){
 	int i;
 	vita2d_texture *peter = vita2d_load_PNG_buffer(&_binary_resources_peter_png_start);
 	for(i = 0; i < MAX_NUM_ENEMIES; i++){
-		enemy[i].x = 480 + ((int)rand()%10000);
-		enemy[i].y = 1 + ((int)rand()%272 - 34);
+		enemy[i].x = 960 + ((int)rand()%10000);
+		enemy[i].y = 1 + ((int)rand()%540 - 34);
 		enemy[i].img = peter;
 		if(!enemy[i].img){
 			printf("Enemy image failed to load...");
@@ -328,7 +328,7 @@ void blitEnemies(){
 	     		blitObj(enemy[enemy_ctr]);
 	     	} else {
 	     		//free up memory.. do not blit to screen
-	     		enemy[enemy_ctr].x = 9600;
+	     		enemy[enemy_ctr].x = 960;
 	     	}
 		}
 }

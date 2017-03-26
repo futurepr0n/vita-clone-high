@@ -119,10 +119,10 @@ int main()
 		sceCtrlPeekBufferPositive(0, &pad, 1);
 		vita2d_start_drawing();
 		vita2d_clear_screen();
-		control(pad, fireball_sound);
-
 		
 		scrollBackground(bg_i, bg_x, bg_y);
+
+		control(pad, fireball_sound);
 
 		vita2d_draw_texture(bg_i, bg_x, bg_y);
 		vita2d_draw_texture(bg_ii, bg_x + 512, bg_y);
@@ -210,7 +210,7 @@ void scrollBackground(vita2d_texture *bg, float bg_x, float bg_y){
 				bg_x=0;
 			}
 		}
-
+		return bg, bg_x, bg_y;
 }
 
 void loadCharacterData(){

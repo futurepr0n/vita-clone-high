@@ -210,7 +210,7 @@ void scrollBackground(vita2d_texture *bg, float bg_x, float bg_y){
 				bg_x=0;
 			}
 		}
-		return bg, bg_x, bg_y;
+	
 }
 
 void loadCharacterData(){

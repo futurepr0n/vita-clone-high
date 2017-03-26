@@ -120,7 +120,7 @@ int main()
 		vita2d_start_drawing();
 		vita2d_clear_screen();
 		
-		scrollBackground(bg_i, bg_x, bg_y);
+		scrollBackground(&bg_i, bg_x, bg_y);
 
 		control(pad, fireball_sound);
 

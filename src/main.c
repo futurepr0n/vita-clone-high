@@ -66,7 +66,7 @@ void loadCharacterData();
 void loadFireball();
 void shootFireball();
 int checkCollision(obj blt);
-void scrollBackground(vita2d_texture *bg, float bg_x, float bg_y);
+void scrollBackground(vita2d_texture *bg1, vita2d_texture *bg2, vita2d_texture *bg3, float bg_x, float bg_y);
 
 //a_player.x = 20.0f;
 //a_player.y = 20.0f;
@@ -120,13 +120,11 @@ int main()
 		vita2d_start_drawing();
 		vita2d_clear_screen();
 		
-		scrollBackground(&bg_i, bg_x, bg_y);
+		scrollBackground(bg_i, bg_ii, bg_iii, bg_x, bg_y);
 
 		control(pad, fireball_sound);
 
-		vita2d_draw_texture(bg_i, bg_x, bg_y);
-		vita2d_draw_texture(bg_ii, bg_x + 512, bg_y);
-		vita2d_draw_texture(bg_iii, bg_x + 1024, bg_y);
+		
 
 		blitEnemies();
 
@@ -195,21 +193,24 @@ void blitBackgroundBW(vita2d_texture *bg, float x, float y){
 
 }
 
-void scrollBackground(vita2d_texture *bg, float bg_x, float bg_y){
+void scrollBackground(vita2d_texture *bg1, vita2d_texture *bg2, vita2d_texture *bg3, float bg_x, float bg_y){
 
 		if(bg_x < 0){
-    	      		blitBackground(bg, bg_x, bg_y);
+    	      		blitBackground(bg1, bg_x, bg_y);
  	   		if(bg_x<-512){
      	   			bg_x=0;
      	  }
     	}
 
 		if(bg_x > 0){
-			blitBackgroundBW(bg, bg_x, bg_y);
+			blitBackgroundBW(bg1, bg_x, bg_y);
 			if(bg_x>+512){
 				bg_x=0;
 			}
 		}
+		vita2d_draw_texture(bg1, bg_x, bg_y);
+		vita2d_draw_texture(bg2, bg_x + 512, bg_y);
+		vita2d_draw_texture(bg3, bg_x + 1024, bg_y);
 	
 }
 

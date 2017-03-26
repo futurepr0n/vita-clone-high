@@ -66,6 +66,7 @@ void loadCharacterData();
 void loadFireball();
 void shootFireball();
 int checkCollision(obj blt);
+void scrollBackground();
 
 //a_player.x = 20.0f;
 //a_player.y = 20.0f;
@@ -118,20 +119,10 @@ int main()
 		sceCtrlPeekBufferPositive(0, &pad, 1);
 		vita2d_start_drawing();
 		vita2d_clear_screen();
+		control(pad, fireball_sound);
 
-		if(bg_x < 0){
-    	      		blitBackground(bg_ii, bg_x, bg_y);
- 	   		if(bg_x<-512){
-     	   			bg_x=0;
-     	  }
-    }
-
-		if(bg_x > 0){
-			blitBackgroundBW(bg_ii, bg_x, bg_y);
-			if(bg_x>+512){
-				bg_x=0;
-			}
-		}
+		
+		scrollBackground(bg_i, bg_x, bg_y);
 
 		vita2d_draw_texture(bg_i, bg_x, bg_y);
 		vita2d_draw_texture(bg_ii, bg_x + 512, bg_y);
@@ -139,7 +130,7 @@ int main()
 
 		blitEnemies();
 
-		control(pad, fireball_sound);
+		
 
 		for(p = 0; p < MAX_NUM_BULLETS; p++){
 			a_fireball[p].isalive = checkCollision(a_fireball[p]);
@@ -204,7 +195,23 @@ void blitBackgroundBW(vita2d_texture *bg, float x, float y){
 
 }
 
+void scrollBackground(vita2d_texture *bg, float bg_x, float bg_y){
 
+		if(bg_x < 0){
+    	      		blitBackground(bg, bg_x, bg_y);
+ 	   		if(bg_x<-512){
+     	   			bg_x=0;
+     	  }
+    	}
+
+		if(bg_x > 0){
+			blitBackgroundBW(bg, bg_x, bg_y);
+			if(bg_x>+512){
+				bg_x=0;
+			}
+		}
+
+}
 
 void loadCharacterData(){
 	loadPlayer();

@@ -66,7 +66,7 @@ void loadCharacterData();
 void loadFireball();
 void shootFireball();
 int checkCollision(obj blt);
-void scrollBackground();
+void scrollBackground(vita2d_texture *bg, float bg_x, float bg_y);
 
 //a_player.x = 20.0f;
 //a_player.y = 20.0f;

@@ -193,7 +193,7 @@ void blitBackgroundBW(vita2d_texture *bg, float x, float y){
 
 }
 
-void scrollBackground(vita2d_texture *bg1, vita2d_texture *bg2, vita2d_texture *bg3, float bg_x, float bg_y){
+int scrollBackground(vita2d_texture *bg1, vita2d_texture *bg2, vita2d_texture *bg3, float bg_x, float bg_y){
 
 		if(bg_x < 0){
     	      		blitBackground(bg1, bg_x, bg_y);
@@ -212,6 +212,7 @@ void scrollBackground(vita2d_texture *bg1, vita2d_texture *bg2, vita2d_texture *
 		vita2d_draw_texture(bg2, bg_x + 512, bg_y);
 		vita2d_draw_texture(bg3, bg_x + 1024, bg_y);
 	
+		return bg_x, bg_y;
 }
 
 void loadCharacterData(){
